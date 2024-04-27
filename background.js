@@ -1,22 +1,23 @@
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status === 'complete') {
-        // Send URL to server
-        sendUrlToServer(tab.url);
-    }
-});
-
+// Function to send URL to server
 function sendUrlToServer(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "localhost", true); // Replace example.com/endpoint with your server endpoint
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-                console.log("URL sent successfully");
-            } else {
-                console.error("Failed to send URL:", xhr.status);
-            }
+    // Make a POST request to the server API endpoint
+    fetch('http://localhost:3000/api/submit-url', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ url: url })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-    };
-    xhr.send(JSON.stringify({ url: url }));
+        console.log('URL sent successfully');
+    })
+    .catch(error => {
+        console.error('Error sending URL to server:', error.message);
+    });
 }
+
+// Example: Send a URL to the server when the extension starts
+sendUrlToServer('https://example.com');

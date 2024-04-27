@@ -7,12 +7,19 @@ const port = 3000; // Choose a port for your server
 // Middleware to parse JSON request bodies
 app.use(bodyParser.json());
 
-// Endpoint to handle URL data sent from extension
-app.post('/receive-url', (req, res) => {
+// Sample endpoint to handle URL submission
+app.post('/api/submit-url', (req, res) => {
+    // Extract the URL data from the request body
     const { url } = req.body;
+
+    // Log the received URL to the console
     console.log('Received URL:', url);
-    // Here you can process the received URL data (e.g., save it to a database)
-    res.sendStatus(200); // Send a response to the extension indicating success
+
+    // Here, you can perform additional operations with the received URL data
+    // For example, you might save it to a database or perform some business logic
+
+    // Send a response to the extension
+    res.json({ message: 'URL received successfully', data: { url } });
 });
 
 // Start the server
