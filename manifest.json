@@ -2,15 +2,15 @@
     "manifest_version": 2,
     "name": "Ayush",
     "version": "1.0",
-    "description": "Your security is our purpose",
+    "description": "Your safety is our purpose.",
     "permissions": [
-        "tabs",
-        "storage",
-        "history",
-        "https://*/*"
+        "activeTab", 
+        "scripting", 
+        "https://www.virustotal.com/*"  
     ],
     "background": {
-        "service_worker": "background.js"
+        "scripts": ["api.js", "background.js"],
+        "persistent": false
     },
     "browser_action": {
         "default_popup": "index.html",
@@ -18,17 +18,17 @@
             "16": "images/icon16x16.png",
             "48": "images/icon48x48.png",
             "128": "images/icon128x128.png"
-        }
-    },
+        },
     "icons": {
         "16": "images/icon16x16.png",
         "48": "images/icon48x48.png",
         "128": "images/icon128x128.png"
     },
-    "content_scripts": [
-        {
-            "matches": ["https://*/*"], 
-            "js" : ["api.js"]
-        } 
-    ]
+    "page_action": {
+        "default_popup": "index.html"
+    },
+    "user_scripts": {
+        "api_script": "api.js"
+      }
+    }
 }

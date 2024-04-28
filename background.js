@@ -1,6 +1,11 @@
-// background.js
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.url) {
-        console.log('User input URL:', request.url);
+importScripts('api.js');
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === 'showPopup') {
+      // Open the extension's popup
+      chrome.action.openPopup();
     }
-});
+  });
+  
+  // Other parts of your background script...
+  
