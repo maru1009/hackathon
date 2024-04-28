@@ -27,18 +27,8 @@ function scanUrl(url) {
     });
 }
 
-function hasVirus(scanReport) {
-    const scanResults = scanReport.data.attributes.results;
-    for (const engine in scanResults) {
-        if (scanResults[engine].category === 'malicious') {
-            return true; 
-        }
-    }
-    return false; // No virus detected
-}
-
 // Example usage:
-const urlToScan = 'ginedis.com';
+const urlToScan = '17ebook.co';
 scanUrl(urlToScan)
     .then(selfLink => {
         if (selfLink) {
@@ -74,5 +64,3 @@ scanUrl(urlToScan)
         }
         return false; // No virus detected
     }
-    
-    module.exports = { hasVirus };

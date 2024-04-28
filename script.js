@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
     var checkButton = document.getElementById('checkButton');
     var resultDiv = document.getElementById('result');
