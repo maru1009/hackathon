@@ -1,0 +1,12 @@
+/* style.css */
+#urlValidityBox {
+    display: none; /* Initially hide the box */
+}
+
+.valid-url {
+    color: green;
+}
+
+.invalid-url {
+    color: red;
+}
